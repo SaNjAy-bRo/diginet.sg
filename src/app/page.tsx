@@ -8,6 +8,7 @@ import { ManagedServices } from "@/components/sections/ManagedServices";
 import { PricingCTA } from "@/components/sections/PricingCTA";
 import { ThreatTicker } from "@/components/sections/ThreatTicker";
 import { MidCTA } from "@/components/sections/MidCTA";
+import { ITSolutions } from "@/components/sections/ITSolutions";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <Intro />
         <Services />
         <MidCTA />
+        <ITSolutions />
         <WhyChooseUs />
         <ManagedServices />
         <PricingCTA />

@@ -18,10 +18,13 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Threat Intel", href: "#" },
-    { name: "Services", href: "#" },
-    { name: "Solutions", href: "#" },
-    { name: "Company", href: "#" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/#about" },
+    { name: "Cybersecurity", href: "/#cybersecurity" },
+    { name: "IT Solutions", href: "/#it-solutions" },
+    { name: "Case Studies", href: "/#case-studies" },
+    { name: "Blogs", href: "/#blogs" },
+    { name: "Contact Us", href: "/#contact" },
   ];
 
   return (

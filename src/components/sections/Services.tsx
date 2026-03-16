@@ -60,12 +60,18 @@ export function Services() {
   ];
 
   return (
-    <section id="capabilities" ref={containerRef} className="py-20 lg:py-40 bg-[#00050A] relative overflow-hidden">
+    <section id="capabilities" ref={containerRef} className="py-20 lg:py-40 relative overflow-hidden bg-gradient-to-br from-[#ff8c00] via-[#ea580c] to-[#c2410c]">
+      {/* Light Overlay to enhance the gradient richness */}
+      <div className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-60">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-white/40 via-transparent to-transparent"></div>
+        <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-black/20 via-transparent to-transparent"></div>
+      </div>
+      
       {/* Structural geometric lines */}
-      <div className="absolute top-0 right-0 w-[1px] h-full bg-gradient-to-b from-transparent via-brand-cyan/20 to-transparent right-[10%] hidden lg:block"></div>
-      <div className="absolute top-0 right-0 w-[1px] h-full bg-gradient-to-b from-transparent via-brand-orange/20 to-transparent right-[50%] hidden lg:block"></div>
+      <div className="absolute top-0 right-0 w-[1px] h-full bg-gradient-to-b from-transparent via-white/40 to-transparent right-[10%] hidden lg:block"></div>
+      <div className="absolute top-0 right-0 w-[1px] h-full bg-gradient-to-b from-transparent via-white/40 to-transparent right-[50%] hidden lg:block"></div>
 
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 lg:mb-24 gap-8 lg:gap-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -73,17 +79,17 @@ export function Services() {
             viewport={{ once: true }}
             className="max-w-2xl"
           >
-            <div className="w-12 h-1 bg-brand-orange mb-6"></div>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tighter leading-[1.05]">
+            <div className="w-12 h-1 bg-white mb-6 shadow-[0_0_15px_rgba(255,255,255,0.8)]"></div>
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black text-white tracking-tighter leading-[1.05] drop-shadow-md">
               Capabilities
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-gray-700 mt-2 text-3xl md:text-5xl">Engineered for Resilience</span>
+              <span className="block text-white mt-2 text-3xl md:text-5xl drop-shadow-md">Engineered for Resilience</span>
             </h2>
           </motion.div>
           <motion.p 
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-gray-400 text-lg md:text-xl max-w-md lg:text-right font-light border-l lg:border-l-0 lg:border-r border-brand-cyan/30 pl-6 lg:pl-0 lg:pr-6"
+            className="text-white text-lg md:text-xl max-w-md lg:text-right font-medium border-l lg:border-l-0 lg:border-r border-white/50 pl-6 lg:pl-0 lg:pr-6 drop-shadow-md"
           >
             Full-spectrum cyber operations. We do not sell tools; we deliver strategic security outcomes.
           </motion.p>
@@ -95,29 +101,29 @@ export function Services() {
             <motion.div 
               key={index}
               style={{ y: index % 2 === 0 ? service.y : undefined }} // Apply parallax selectively
-              className={`group relative overflow-hidden rounded-[2rem] border border-white/5 bg-[#050A14]/80 backdrop-blur-sm p-8 lg:p-12 hover:border-white/20 transition-colors duration-500 ${service.span} ${service.shadow}`}
+              className={`group relative overflow-hidden rounded-[2rem] border border-white/50 bg-white/90 shadow-xl backdrop-blur-xl p-8 lg:p-12 hover:shadow-2xl hover:scale-[1.02] transition-all duration-500 ${service.span}`}
             >
               {/* Internal glow */}
-              <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${service.color} rounded-full blur-[100px] opacity-0 group-hover:opacity-20 transition-opacity duration-700`}></div>
+              <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${service.color} rounded-full blur-[80px] hover:opacity-30 opacity-10 transition-opacity duration-700 pointer-events-none`}></div>
               
               <div className="flex flex-col h-full justify-between relative z-10">
                 <div className="flex justify-between items-start mb-16">
-                  <div className={`p-4 rounded-xl bg-gradient-to-br ${service.color} bg-opacity-10 text-white shadow-xl transform group-hover:-translate-y-2 transition-transform duration-500`}>
+                  <div className={`p-4 rounded-xl bg-gradient-to-br ${service.color} text-white shadow-lg transform group-hover:-translate-y-2 transition-transform duration-500`}>
                     <service.icon className="w-8 h-8" />
                   </div>
-                  <span className="text-[10px] font-mono tracking-[0.3em] text-gray-500 border border-gray-800 px-3 py-1 rounded-full">{service.tag}</span>
+                  <span className="text-[10px] font-bold tracking-[0.3em] text-brand-orange border border-brand-orange/30 bg-brand-orange/5 px-3 py-1 rounded-full uppercase">{service.tag}</span>
                 </div>
                 
                 <div>
-                  <h4 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight">{service.title}</h4>
-                  <p className="text-gray-400 text-base md:text-lg leading-relaxed font-light mb-8 max-w-sm">
+                  <h4 className="text-2xl md:text-3xl font-black text-gray-900 mb-4 leading-tight">{service.title}</h4>
+                  <p className="text-gray-600 text-base md:text-lg leading-relaxed font-medium mb-8 max-w-sm">
                     {service.description}
                   </p>
                   
-                  <div className="flex items-center text-sm font-bold text-white uppercase tracking-wider group-hover:text-brand-cyan transition-colors cursor-pointer w-max">
+                  <div className="flex items-center text-sm font-bold text-gray-900 uppercase tracking-wider group-hover:text-brand-orange transition-colors cursor-pointer w-max">
                     <span className="relative">
                       Acknowledge Vector
-                      <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-cyan group-hover:w-full transition-all duration-300"></div>
+                      <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-orange group-hover:w-full transition-all duration-300"></div>
                     </span>
                     <ArrowRight className="ml-3 w-4 h-4 transform group-hover:translate-x-2 transition-transform" />
                   </div>
