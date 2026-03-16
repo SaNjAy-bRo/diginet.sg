@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, PhoneCall, ChevronRight, Shield } from "lucide-react";
+import { Menu, X, PhoneCall, ChevronRight, Shield, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
@@ -79,49 +79,64 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#00050A]/95 backdrop-blur-xl pt-32 pb-6 px-6 lg:hidden overflow-y-auto flex flex-col justify-between"
+            className="fixed inset-0 z-[60] bg-[#00050A] backdrop-blur-2xl lg:hidden flex flex-col"
           >
-            <div className="space-y-8">
-              <div className="flex items-center mb-8">
-                <img 
-                  src="/diginetnewlogo.png" 
-                  alt="Diginet Cybersecurity" 
-                  className="h-12 w-auto object-contain"
-                />
+            {/* Overlay Header */}
+            <div className="flex items-center justify-between px-6 py-6 border-b border-white/5">
+              <img 
+                src="/diginetnewlogo.png" 
+                alt="Diginet Cybersecurity" 
+                className="h-10 w-auto object-contain"
+              />
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="p-2 text-white hover:text-brand-orange transition-colors bg-white/5 rounded-full"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Menu Content */}
+            <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col">
+              <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full border border-brand-cyan/30 text-brand-cyan mb-10 bg-brand-cyan/5 self-start">
+                <Shield className="w-4 h-4" />
+                <span className="text-xs font-mono tracking-[0.2em] uppercase">Secure Portal Access</span>
               </div>
               
-              <ul className="flex flex-col space-y-6 text-2xl font-black uppercase tracking-tighter">
+              <ul className="flex flex-col space-y-6 text-3xl font-black uppercase tracking-tighter w-full">
                 {navLinks.map((link, i) => (
                   <motion.li 
                     key={link.name}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 + 0.1 }}
+                    className="border-b border-white/5 pb-4"
                   >
                     <Link 
                       href={link.href} 
                       onClick={() => setIsOpen(false)}
-                      className="text-gray-400 hover:text-brand-cyan transition-colors flex items-center justify-between group"
+                      className="text-gray-300 hover:text-white hover:pl-4 transition-all duration-300 flex items-center justify-between group"
                     >
                       <span>{link.name}</span>
-                      <ArrowRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transform -translate-x-4 group-hover:translate-x-0 transition-all text-brand-cyan" />
+                      <ArrowRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transform -translate-x-4 group-hover:translate-x-0 transition-all duration-300 text-brand-cyan" />
                     </Link>
                   </motion.li>
                 ))}
               </ul>
+
+              <div className="mt-auto pt-10">
+                <p className="text-gray-500 text-sm mb-4">Emergency Incident Response?</p>
+                <div className="flex items-center space-x-3 text-brand-orange font-bold text-lg mb-8">
+                  <PhoneCall className="w-5 h-5" />
+                  <span>1-800-CYBER-SEC</span>
+                </div>
+                <button className="w-full flex items-center justify-center px-6 py-4 text-sm font-bold tracking-widest uppercase text-[#010812] bg-brand-cyan transition-colors hover:bg-white relative overflow-hidden group">
+                  <div className="absolute inset-0 w-full h-full bg-white/20 transform -translate-x-full skew-x-12 group-hover:transition-none"></div>
+                  Execute Consultation
+                  <ChevronRight className="w-5 h-5 ml-2" />
+                </button>
+              </div>
             </div>
-            
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="mt-12 pt-8 border-t border-white/10"
-            >
-              <button className="w-full flex items-center justify-center px-6 py-4 text-sm font-bold tracking-widest uppercase text-[#010812] bg-brand-cyan transition-colors">
-                 Execute Consultation
-                 <ChevronRight className="w-5 h-5 ml-2" />
-              </button>
-            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -129,5 +144,3 @@ export function Navbar() {
   );
 }
 
-// Ensure you export ArrowRight for the mobile menu if you use it there
-import { ArrowRight } from "lucide-react";
